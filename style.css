@@ -1,9 +1,18 @@
 body {
-    
+    color: dodgerblue;
 }
+
 
 
 
 h1 {
     text-align: center;
+}
+
+img {
+    justify-content: center;
+} 
+
+.bg-image {
+    align-content: center;
 }
