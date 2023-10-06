@@ -15,4 +15,12 @@ img {
 
 .bg-image {
     align-content: center;
+    image-orientation: flip;
+}
+
+
+.search  {
+    color: black;
+    align-content: center;
+    text-align: center  ;
 }

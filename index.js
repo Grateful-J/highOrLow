@@ -19,8 +19,8 @@ async function fetchGifs() {
     axios.get(gifUrl)
     .then(response => {
         const gotGifs = response.data.data.url;
-        // sendGif(gotGifs)
-        console.log( gotGifs);
+        newImage.src = gotGifs;
+        //console.log( gotGifs);
 
         //console.log ('response.data dump below: ' , response.data)
     })
