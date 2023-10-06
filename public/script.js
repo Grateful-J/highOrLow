@@ -2,7 +2,8 @@ document.getElementById('gifImage').onerror = handleImageError;
 
 let computerCard;
 let secondCard;
-let cardsRemaining;
+let cardsRemaining =51;
+let deckID;
 
 // Determines card ranking
 function valueCheck() {
@@ -72,20 +73,47 @@ let loserReacts = [
     "not even close"
 ];
 
+//Check if deckID exists before asking for new one
+function checkDeck() {
+    if (!deckID) {
+        getCards();
+    } else dealCard();
+    console.log(`deck is checked moving on to dealing`)
+}
 
-// Fetches from /shuffleCards
-function shuffleCards() {
-    fetch('shuffleDeck')
+// Fetches from /getDeck
+function getCards() {
+    fetch('getDeck')
+    .then(response => response.json())
+    .then (data => {
+        deckID = data.deck_id;
+        cardsRemaining = data.cardsRemaining;
+    })
 
     .catch(error => {
-        console.log(`Error shuffling cards:`, error)
+        console.log(`Error getting cards:`, error)
+    })
+}
+
+// Fetches from /shuffleDeck
+function shuffleDeck() {
+    fetch('shuffleDeck')
+    .then (response => response.json())
+    .then (data => {
+        cardsRemaining = data.cardsRemaining;
+    })
+
+    .catch(error => {
+        console.log(`Error shuffling deck:`, error)
     })
 }
 
 
-
 //Deal Function
 function dealCard() {
+    if (cardsRemaining <= 2){
+        shuffleDeck();
+    }else {
     fetch('/drawCard')
     .then(response => response.json())
     .then(data => {
@@ -100,6 +128,7 @@ function dealCard() {
     .catch(error => {
         console.log('Error dealing cards:', error);
     }) 
+}
 }
 
 // Choose Lower function

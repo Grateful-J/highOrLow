@@ -14,24 +14,36 @@ let drawCount = 1;
 let playerCard;
 
 //Deck of Cards API URL
-const shuffleUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
+const getNewCardsUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
 
-//requests a new deck and stores deck value for later draws
-
-app.get('/shuffleDeck', async (req, res) => {
+//Requests a new deck and stores deck value for later draws
+app.get('/getDeck', async (req, res) => {
     try {
-        const response = await axios.get(shuffleUrl);
+        const response = await axios.get(getNewCardsUrl);
         deckID = response.data.deck_id;
         console.log(deckID)
         res.json({ deck_id: deckID,});
         return deckID;
     }
     catch(error) {
+        console.log(`Error getting new deck`, error);
+        res.status(500).json({error: 'Failed getting new deck'})
+    }
+})
+
+// Uses previously stored deck ID to shuffle
+app.get('/shuffleDeck', async (req, res) => {
+    const shuffleUrl = `https://www.deckofcardsapi.com/api/deck/${deckID}/shuffle/`
+    try {
+        const response = await axios.get(shuffleUrl);
+        deckID = response.data.deck_id;
+        
+    }
+    catch(error) {
         console.log(`Error shuffling deck`, error);
         res.status(500).json({error: 'Failed shuffling new deck'})
     }
 })
-
 
 
 //Uses deck value to call for a new card
@@ -41,7 +53,9 @@ app.get('/drawCard', async(req, res) => {
         const response = await axios.get(drawUrl);
         playerCard = response.data.cards[0].code; // temp stores card for later calls
         cardImage = response.data.cards[0].image;
-        res.json({card: playerCard, img: cardImage })
+        const remaining= response.data.remaining;
+        res.json({card: playerCard, img: cardImage, remaining: remaining })
+
     }
     
     catch(error) {
