@@ -1,32 +1,101 @@
 body {
-    color: dodgerblue;
+    color: rgba(255, 0, 21, 00.9);
+    font-weight: bolder;
+    text-shadow: 2px 2px 4px #000; /* This gives a black shadow to the text */
+    text-align: center;
+    background-image: url(bg.jpeg);
+    background-image: url('bg.jpeg');
+    background-size: cover; /* This will make sure the image covers the entire viewport */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+    background-position: center center; /* This will center the image */
 }
+
+button {
+    padding: 10px 20px; /* Adjust as needed */
+    font-size: 16px; /* Adjust as needed */
+    border: none;
+    border-radius: 5px; /* Gives rounded corners */
+    background-color: rgb(255, 0, 21);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: rgba(255, 43, 60, 1); /* Slightly darker shade for hover */
+}
+
+
+
+.center {
+    text-align: center;
+    width: 100%;
+    display: block; /* Ensures block-level behavior */
+    margin: 0 auto; /* Centers block-level elements */
+}
+
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 
 h1 {
     text-align: center;
 }
 
 img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     max-width: 100%;
-    
-} 
+}
 
-.bg-image {
-    align-content: center;
-    image-orientation: flip;
+.row {
+    display: flex; /* This will make the columns sit side by side */
+    justify-content: center; /* This will center the columns */
+}
+
+.column {
+    margin: 0 10px; /* This will give some space between the columns */
 }
 
 .choices {
+    display: none; /* Initially hide the choices */
     align-content: center;
     text-align: center;
 }
 
-.search  {
-    color: black;
-    align-content: center;
-    text-align: center  ;
+.gifs {
+    text-align: center;
+    color:  rgba(255, 0, 21, 00.9);
 }
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+}
+
+.overlay img {
+    max-width: 80%; /* Adjust as needed */
+    max-height: 80%; /* Adjust as needed */
+}
+
+
+.search {
+    color: black;
+    align-content: center;
+    text-align: center;
+}
+
+.results {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}

@@ -106,6 +106,9 @@ function shuffleDeck() {
     .catch(error => {
         console.log(`Error shuffling deck:`, error)
     })
+
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none'; // This will hide the overlay
 }
 
 
@@ -128,6 +131,10 @@ function dealCard() {
     .catch(error => {
         console.log('Error dealing cards:', error);
     }) 
+
+     // After the dealer's card is dealt, hide the draw button and show the choices
+     document.getElementById('drawButton').style.display = 'none';
+     document.querySelector('.choices').style.display = 'block';
 }
 }
 
@@ -191,13 +198,25 @@ function assignGif(result) {
     .then(response => response.json())
     .then(data => {
         //Displays the fetched GIF on front end
-        const gifImage = document.getElementById('gifImage');   
-        gifImage.src = data.url;
+        const overlay = document.getElementById('overlay');
+        const reactionGif = document.getElementById('reactionGif');
+        reactionGif.src = data.url;
+        overlay.style.display = 'flex'; // This will show the overlay
     })
 
     .catch(error => {
         console.log(`Error fetching Gif`, error)
     })
+
+    function displayResult(result) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.textContent = result; // e.g., "You Win!", "You Lose!", "It's a Draw!"
+    }
+
+    // At the end of the assignGif function
+    setTimeout(resetGame, 3000); // This will reset the game after 5 seconds
+
+    
 }
 
 
@@ -224,4 +243,13 @@ function searchGif() {
 function handleImageError() {
     const gifImage = document.getElementById('gifImage');
     console.error("Error loading image:", gifImage.src);
+}
+
+function resetGame() {
+    console.log('resetting game..3.2.1.')
+    document.getElementById('drawButton').style.display = 'inline-block';
+    document.querySelector('.choices').style.display = 'none';
+    document.getElementById('gifImage').src = '';
+    document.getElementById('second-card').src = '';
+    document.getElementById('overlay').style.display = 'none';
 }
