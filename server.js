@@ -4,13 +4,17 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 
 //Deck of Cards API URL
 const deckUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
 
 
-
+//Giphy API for searching gifs
 app.get('/getGif', async (req, res) => {
     const gifSearch = req.query.search;
     const gifAPI = process.env.GIF_API_KEY;
@@ -30,8 +34,5 @@ app.get('/getGif', async (req, res) => {
 
 })
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 
