@@ -9,15 +9,19 @@
 <body onload="getCards()">
     <div class="center">
         <h1> Higher or Lower</h1>
-        <button id="drawButton" onclick="checkDeck()">Click to Draw</button>
+        <button  class="buttons" id="drawButton" onclick="checkDeck()">Click to Draw</button>
     </div> 
 
     <br><br>
 
     <div class="row">
+        <div class="overlay" id="overlay">
+            <img id="reactionGif" src="" alt="Reaction GIF">
+        </div>
+        
         <div class="column">
             <h3>Dealer's Card</h3>
-            <img id="gifImage" src="table.jpeg" alt="Your GIF will appear here">
+            <img id="gifImage" src="" alt="">
         </div>
         <div class="column">
             <h3>Your Card</h3>
@@ -27,10 +31,11 @@
 
     <br>
 
-    <div class="choices">
-        <button onclick="chooseLower()">Lower</button>
-        <button onclick="chooseHigher()">Higher</button>
-    </div>
+<div class="choices" style="display: none;">
+    <button class="buttons" onclick="chooseLower()">Lower</button>
+    <button class="buttons" onclick="chooseHigher()">Higher</button>
+</div>
+
 
     <div class="results" id="results">
 
