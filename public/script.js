@@ -1,7 +1,7 @@
 document.getElementById('gifImage').onerror = handleImageError;
 
 
-
+//Fetches GIF from Giphy
 function fetchGif() {
     const searchTerm = document.getElementById('searchTerm').value;
     const gifUrl = `/getGif?search=${searchTerm}`

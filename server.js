@@ -9,9 +9,24 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
+let deckID;
+let drawCount = 1;
 
 //Deck of Cards API URL
-const deckUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
+const shuffleUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
+const drawUrl = `https://www.deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
+
+app.get('/shuffleDeck', async (req, res) => {
+    try {
+        const response = await axios.get(deckUrl);
+        deckID = response.data.deck_id;
+        res.json({ deck_id: deckID});
+    }
+    catch(error) {
+        console.log(`Error shuffling deck`, error);
+        res.status(500).json({error: 'Failed shuffling new deck'})
+    }
+})
 
 
 //Giphy API for searching gifs
