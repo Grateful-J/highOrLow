@@ -65,11 +65,46 @@ function dealCard() {
     }) 
 }
 
+// Choose lower function
+function chooseLower(){
+    fetch('/drawCard')
+    .then(response => response.json())
+    .then(data =>{
+        const card2Image = data.img;
+        const newCard2 = document.getElementById('second-card')
+        newCard2.src = card2Image;
+
+        //Assign 2nd card a value
+        secondCard = data.card[0];
+    })
+
+    .catch(error => {
+        console.log(`Error drawing lower choice`, error)
+    })
+}
+
+// Choose Higher function
+function chooseHigher(){
+    fetch('/drawCard')
+    .then(response => response.json())
+    .then(data =>{
+        const card2Image = data.img;
+        const newCard2 = document.getElementById('second-card')
+        newCard2.src = card2Image;
+
+        //Assign 2nd card a value
+        secondCard = data.card[0];
+    })
+
+    .catch(error => {
+        console.log(`Error drawing higher choice`, error)
+    })
+}
 
 
 
-//Fetches GIF from Giphy
-function fetchGif() {
+//Search GIF from Giphy
+function searchGif() {
     const searchTerm = document.getElementById('searchTerm').value;
     const gifUrl = `/getGif?search=${searchTerm}`
 
