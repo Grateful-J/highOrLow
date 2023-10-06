@@ -3,7 +3,7 @@ document.getElementById('gifImage').onerror = handleImageError;
 let computerCard;
 let secondCard;
 
-//determines card ranking
+// Determines card ranking
 function valueCheck() {
     //Object of card  values
     const cardValues = {
@@ -36,11 +36,18 @@ function valueCheck() {
 }
 
 
-//ToDo: fetches from /shuffleCards
+// Fetches from /shuffleCards
+function shuffleCards() {
+    fetch('shuffleDeck')
+
+    .catch(error => {
+        console.log(`Error shuffling cards:`, error)
+    })
+}
 
 
 
-//ToDo: Deal Function
+//Deal Function
 function dealCard() {
     fetch('/drawCard')
     .then(response => response.json())
@@ -56,31 +63,7 @@ function dealCard() {
     .catch(error => {
         console.log('Error dealing cards:', error);
     }) 
-
-    
-
-    //assign computerCard a value
-    ComputerCard = response.card.value[0] //ignoring suit
-
 }
-
-//ToDo: Choose Lower Function
-function chooseLower() {
-    //deal second card
-    //check if card is lower 
-    chooseHigher(computerCard,secondCard);
-    if (chooseHigher === "lower"){
-        fetchGif() // ToDo isntead of searching for gif, present an array to pull from of wining gifs
-    } // ToDo: else statment with Losing gifs for lose or draw
-}
-
-//ToDo Choose Higher Function
-function chooseHigher(computerCard, secondCard) {
-    //ToDo: rinse and repeast from above function
-}
-
-
-
 
 
 
