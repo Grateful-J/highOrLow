@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="center">
-        <h1> This is an image generator</h1>
+        <h1> Higher or Lower</h1>
     </div> 
 
     <div class="search">
 
-    <h1> Search for an image</h1>
+    <button onclick="dealCards()">Click to Begin</button>
     <input type="text" id="searchTerm" placeholder="Enter Search Here...">
     <button onclick="fetchGif()">Search</button>
     <br><br>
@@ -23,8 +23,16 @@
 
     <div class="gifs">
         <img id="gifImage" src="table.jpeg" alt="Your GIF will appear here">
+    </div>
 
+    <br>
+    
 
+    <div class="choices">
+        <button onclick="chooseLower()">Lower</button>
+        
+        <button onclick="chooseRight()">Higher</button>
+    </div>
 
     <script src="script.js"></script>
     

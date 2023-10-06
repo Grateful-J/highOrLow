@@ -19,9 +19,14 @@ img {
     image-orientation: flip;
 }
 
+.choices {
+    align-content: center;
+    text-align: center;
+}
 
 .search  {
     color: black;
     align-content: center;
     text-align: center  ;
 }
+
