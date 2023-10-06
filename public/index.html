@@ -7,14 +7,14 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
-<body>
+<body onload="shuffleCards()">
     <div class="center">
         <h1> Higher or Lower</h1>
     </div> 
 
     <div class="search">
 
-    <button onclick="dealCards()">Click to Begin</button>
+    <button onclick="dealCard()">Click to Begin</button>
     <input type="text" id="searchTerm" placeholder="Enter Search Here...">
     <button onclick="fetchGif()">Search</button>
     <br><br>

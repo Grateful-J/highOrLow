@@ -77,7 +77,7 @@ function fetchGif() {
     fetch(gifUrl)
     .then(response => response.json())
     .then(data => {
-        //displays the fetched GIF on front end
+        //Displays the fetched GIF on front end
         console.log('uploading URL now')
         const gifImage = document.getElementById('gifImage');   
         gifImage.src = data.url;
