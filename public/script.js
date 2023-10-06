@@ -42,14 +42,22 @@ function valueCheck() {
 
 //ToDo: Deal Function
 function dealCard() {
-    //fetches from /drawcard
-    //Example return of /drawCard
-    //{"card":"8C","img":"https://deckofcardsapi.com/static/img/8C.png"}
+    fetch('/drawCard')
+    .then(response => response.json())
+    .then(data => {
+        const cardImage = data.img;
+        const newCard = document.getElementById('gifImage');
+        newCard.src = cardImage
 
-    const cardImage = dealCards(response).img
+        // Assign computerCard a Value
+        computerCard = data.card[0]; //ignoring suit
+    })
+  
+    .catch(error => {
+        console.log('Error dealing cards:', error);
+    }) 
 
-    const newCard = document.getElementById('gifImage');
-    newCard.src = cardImage
+    
 
     //assign computerCard a value
     ComputerCard = response.card.value[0] //ignoring suit
