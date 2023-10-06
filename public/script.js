@@ -128,6 +128,10 @@ function dealCard() {
     .catch(error => {
         console.log('Error dealing cards:', error);
     }) 
+
+     // After the dealer's card is dealt, hide the draw button and show the choices
+     document.getElementById('drawButton').style.display = 'none';
+     document.querySelector('.choices').style.display = 'block';
 }
 }
 
@@ -198,6 +202,12 @@ function assignGif(result) {
     .catch(error => {
         console.log(`Error fetching Gif`, error)
     })
+
+    function displayResult(result) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.textContent = result; // e.g., "You Win!", "You Lose!", "It's a Draw!"
+    }
+    
 }
 
 

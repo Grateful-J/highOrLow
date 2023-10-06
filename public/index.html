@@ -5,37 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-
 </head>
 <body onload="getCards()">
     <div class="center">
         <h1> Higher or Lower</h1>
+        <button id="drawButton" onclick="checkDeck()">Click to Draw</button>
     </div> 
 
-    <div class="search">
-
-    <button onclick="checkDeck()">Click to Begin</button>
-    
-    
     <br><br>
 
-    </div>
-
-    <div class="gifs">
-        <img id="gifImage" src="table.jpeg" alt="Your GIF will appear here">
-        <image id = "second-card" src="" alt=""></image>
+    <div class="row">
+        <div class="column">
+            <h3>Dealer's Card</h3>
+            <img id="gifImage" src="table.jpeg" alt="Your GIF will appear here">
+        </div>
+        <div class="column">
+            <h3>Your Card</h3>
+            <img id="second-card" src="" alt="">
+        </div>
     </div>
 
     <br>
-    
 
     <div class="choices">
         <button onclick="chooseLower()">Lower</button>
-        
         <button onclick="chooseHigher()">Higher</button>
     </div>
 
-    <div>
+    <div class="results" id="results">
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="gif-search">
+        <h4>Search Random Gifs Below</h4>
         <input type="text" id="searchTerm" placeholder="Enter Search Here...">
         <button onclick="searchGif()">Search</button>
     </div>
