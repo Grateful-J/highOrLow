@@ -35,6 +35,14 @@ function valueCheck() {
     }
 }
 
+let winnerReacts = [
+    'winner', 'suck on this one', 'I won', 'MVP'
+];
+
+let loserReacts = [
+    'loser', 'you lose', 'sad', 'crying'
+];
+
 
 // Fetches from /shuffleCards
 function shuffleCards() {
@@ -65,7 +73,7 @@ function dealCard() {
     }) 
 }
 
-// Choose lower function
+// Choose Lower function
 function chooseLower(){
     fetch('/drawCard')
     .then(response => response.json())
@@ -101,6 +109,25 @@ function chooseHigher(){
     })
 }
 
+//Assign results GIF from Giphy
+function assignGif(result) {
+    let i = Math.floor(Math.random(result.length));
+    const searchTerm = result(i)
+
+    //Fetch the GIF
+    fetch(gifUrl)
+    .then(response => response.json())
+    .then(data => {
+        //Displays the fetched GIF on front end
+        const gifImage = document.getElementById('gifImage');   
+        gifImage.src = data.url;
+    })
+
+    .catch(error => {
+        console.log(`Error fetching Gif`, error)
+    })
+}
+
 
 
 //Search GIF from Giphy
@@ -113,11 +140,8 @@ function searchGif() {
     .then(response => response.json())
     .then(data => {
         //Displays the fetched GIF on front end
-        console.log('uploading URL now')
         const gifImage = document.getElementById('gifImage');   
         gifImage.src = data.url;
-
-
     })
 
     .catch(error => {
