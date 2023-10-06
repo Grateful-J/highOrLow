@@ -2,6 +2,7 @@ document.getElementById('gifImage').onerror = handleImageError;
 
 let computerCard;
 let secondCard;
+let cardsRemaining;
 
 // Determines card ranking
 function valueCheck() {
@@ -36,11 +37,39 @@ function valueCheck() {
 }
 
 let winnerReacts = [
-    'winner', 'suck on this one', 'I won', 'MVP'
+    "victory dance",
+    "champion",
+    "first place",
+    "winning moment",
+    "triumphant",
+    "celebration",
+    "number one",
+    "gold medal",
+    "victory lap",
+    "winning smile",
+    "unexpected win",
+    "surprise victory",
+    "epic win",
+    "crazy celebration",
+    "over the top win"
 ];
 
 let loserReacts = [
-    'loser', 'you lose', 'sad', 'crying'
+    "defeated",
+    "sad trombone",
+    "better luck next time",
+    "consolation",
+    "epic fail",
+    "facepalm",
+    "missed it by that much",
+    "so close",
+    "try again",
+    "losing streak",
+    "awkward loss",
+    "unlucky",
+    "oops",
+    "falling short",
+    "not even close"
 ];
 
 
@@ -86,6 +115,12 @@ function chooseLower(){
         secondCard = data.card[0];
     })
 
+    // Calls on valueCheck() and passes reaction array to assignGif()
+    const result =valueCheck();
+    if(result === 'lower'){
+        assignGif(winnerReacts)
+    } else assignGif(loserReacts)
+
     .catch(error => {
         console.log(`Error drawing lower choice`, error)
     })
@@ -102,6 +137,13 @@ function chooseHigher(){
 
         //Assign 2nd card a value
         secondCard = data.card[0];
+
+        // Calls on valueCheck() and passes reaction array to assignGif()
+        const result =valueCheck();
+        if(result === 'higher'){
+            assignGif(winnerReacts)
+        } else assignGif(loserReacts)
+    
     })
 
     .catch(error => {
@@ -111,8 +153,9 @@ function chooseHigher(){
 
 //Assign results GIF from Giphy
 function assignGif(result) {
-    let i = Math.floor(Math.random(result.length));
-    const searchTerm = result(i)
+    let i = Math.floor(Math.random() * (result.length));
+    const searchTerm = result[i];
+    const gifUrl = `/getGif?search=${searchTerm}`;
 
     //Fetch the GIF
     fetch(gifUrl)
